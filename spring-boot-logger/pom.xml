@@ -1,0 +1,116 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>spring-boot-logger</groupId>
+  <artifactId>spring-boot-logger</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>war</packaging>
+
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>1.5.10.RELEASE</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent> 
+  
+  	<properties>
+		<sap.cloud.sdk.version>3.49.11</sap.cloud.sdk.version>
+		
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<java.version>1.8</java.version>		
+		
+	</properties>
+  
+  
+	<dependencies>
+  
+		<!-- SAP Cloud Platform SDK dependencies -->
+		<!-- Neo Java Web Tomcat 8 -->
+		<dependency>
+		    <groupId>com.sap.cloud</groupId>
+		    <artifactId>neo-java-web-sdk</artifactId>
+			<version>${sap.cloud.sdk.version}</version>
+			<scope>provided</scope>
+		</dependency>		
+
+		<!-- LogBack requirements being provided by Neo SDK-->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<scope>provided</scope>
+		</dependency>		
+		<dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-core</artifactId>
+			<scope>provided</scope>
+		</dependency>  		
+  		
+  		<!-- Spring Boot requirements -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-hateoas</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+					<!-- Some exclusions are necessary to make Spring Boot run on HCP. -->
+				<exclusions>
+					<exclusion>
+						<groupId>org.springframework.boot</groupId>
+						<artifactId>spring-boot-starter-tomcat</artifactId>
+					</exclusion>
+						<exclusion>
+						<groupId>org.apache.tomcat.embed</groupId>
+						<artifactId>tomcat-embed-el</artifactId>
+					</exclusion> 
+					<exclusion>
+						<artifactId>logback-classic</artifactId>
+						<groupId>ch.qos.logback</groupId>
+					</exclusion>
+				</exclusions>			
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+		</dependency>
+		<!-- Spring Boot WAR requirements -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-tomcat</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<!-- Spring Boot Testing requirements -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+  </dependencies>
+  
+  
+  <build>
+    <finalName>spring-boot-logger</finalName>
+    <plugins>
+		<plugin>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-maven-plugin</artifactId>
+		</plugin>
+    </plugins>
+  </build>
+</project>
