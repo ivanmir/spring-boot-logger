@@ -18,7 +18,7 @@ public class RequestFilter implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         try {
             // Setup MDC data:
-            String mdcData = String.format("[userId:%s | requestId:%s] ", "ivan", "req-1234");
+            String mdcData = String.format("[userId:%s | requestId:%s] ", "ivan", "ReqID-1234");
             MDC.put("mdcData", mdcData); //Variable 'mdcData' is referenced in Spring Boot's logging.pattern.level property
             chain.doFilter(request, response);
         } finally {
